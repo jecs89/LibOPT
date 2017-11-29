@@ -3494,4 +3494,13 @@ double Logistic_Sigmoid(double x)
 
     return y;
 }
+
+void* param_function( void* pFuncion, int choice){
+    if( choice == 1 ){
+        printf("%s\n", "SPHERE" );
+        pFuncion = &Sphere;
+    }
+    return pFuncion;
+}
 /*****************************/
+
