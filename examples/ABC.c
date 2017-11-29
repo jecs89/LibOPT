@@ -2,14 +2,6 @@
 #include "function.h"
 #include "abc.h"
 
-void* param_function( void* pFuncion, int choice){
-	if( choice == 1 ){
-    	printf("%s\n", "SPHERE" );
-    	pFuncion = &Sphere;
-	}
-    return pFuncion;
-}
-
 int main(int argc, char const *argv[])
 {
 	void* pFuncion;
