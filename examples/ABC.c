@@ -2,18 +2,30 @@
 #include "function.h"
 #include "abc.h"
 
-int main()
+int main(int argc, char const *argv[])
 {
+	void* pFuncion;
 
     SearchSpace *s = NULL;
     int i;
 
-    s = ReadSearchSpaceFromFile("examples/model_files/abc_model.txt", _ABC_); /* It reads the model file and creates a search space. We are going to use ABC to solve our problem. */
+    s = ReadSearchSpaceFromFile("../model_files/abc_model.txt", _ABC_); /* It reads the model file and creates a search space. We are going to use ABC to solve our problem. */
 
     InitializeSearchSpace(s, _ABC_); /* It initalizes the search space */
 
     if (CheckSearchSpace(s, _ABC_)) /* It checks wether the search space is valid or not */
-        runABC(s, Sphere);          /* It minimizes function Sphere */
+    {
+    	if( atoi(argv[1]) == 1 ){
+    		printf("%s\n", "SPHERE" );
+    		pFuncion = &Sphere;
+        	runABC(s, pFuncion);          /* It minimizes function Sphere */
+    	}
+    	if( atoi(argv[1]) == 2 ){
+    		printf("%s\n", "ACKLEY" );
+    		pFuncion = &Ackley_First;
+        	runABC(s, pFuncion);          /* It minimizes function Sphere */
+    	}
+    }
 
     DestroySearchSpace(&s, _ABC_); /* It deallocates the search space */
 
